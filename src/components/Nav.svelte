@@ -2,7 +2,7 @@
 	import { page } from '$app/stores';
 </script>
 
-<!-- Add the Google Font -->
+<!-- Google Font -->
 <svelte:head>
 	<link
 		href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
@@ -16,11 +16,7 @@
 			<!-- Logo -->
 			<div class="flex items-center">
 				<a href="/" class="flex-shrink-0">
-					<img
-						class="top-20 h-24 w-auto"
-						src="/src/lib/assets/logo-[2]-C.png"
-						alt="Ruthful Notes"
-					/>
+					<img class=" h-24 w-auto" src="/src/lib/assets/logo-[2]-C.png" alt="Ruthful Notes" />
 				</a>
 			</div>
 
