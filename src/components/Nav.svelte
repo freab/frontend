@@ -1,5 +1,6 @@
 <script>
 	import { page } from '$app/stores';
+	let isMobileMenuOpen = false;
 </script>
 
 <!-- Google Font -->
@@ -11,12 +12,12 @@
 </svelte:head>
 
 <nav class="sticky top-0 z-50 w-full overflow-hidden bg-white font-[Poppins]">
-	<div class="mx-auto max-w-7xl px-6">
-		<div class="flex h-14 justify-between">
+	<div class="px-6">
+		<div class="flex h-14 justify-between items-center">
 			<!-- Logo -->
 			<div class="flex items-center">
 				<a href="/" class="flex-shrink-0">
-					<img class=" h-24 w-auto" src="/src/lib/assets/logo-[2]-C.png" alt="Ruthful Notes" />
+					<img class="h-24 w-auto" src="/src/lib/assets/logo-[2]-C.png" alt="Ruthful Notes" />
 				</a>
 			</div>
 
@@ -24,37 +25,33 @@
 			<div class="hidden items-center space-x-8 md:flex">
 				<a
 					href="/"
-					class="px-3 py-2 text-sm font-medium text-gray-700 transition-colors duration-200 hover:text-black {$page
-						.url.pathname === '/'
-						? 'font-semibold'
-						: ''}"
+					class="px-3 py-2 text-sm font-medium text-gray-700 transition-colors duration-200 hover:text-black {
+						$page.url.pathname === '/' ? 'font-semibold' : ''
+					}"
 				>
 					Home
 				</a>
 				<a
 					href="/shop"
-					class="px-3 py-2 text-sm font-medium text-gray-700 transition-colors duration-200 hover:text-black {$page
-						.url.pathname === '/shop'
-						? 'font-semibold'
-						: ''}"
+					class="px-3 py-2 text-sm font-medium text-gray-700 transition-colors duration-200 hover:text-black {
+						$page.url.pathname === '/shop' ? 'font-semibold' : ''
+					}"
 				>
 					Shop
 				</a>
 				<a
 					href="/about-us"
-					class="px-3 py-2 text-sm font-medium text-gray-700 transition-colors duration-200 hover:text-black {$page
-						.url.pathname === '/about-us'
-						? 'font-semibold'
-						: ''}"
+					class="px-3 py-2 text-sm font-medium text-gray-700 transition-colors duration-200 hover:text-black {
+						$page.url.pathname === '/about-us' ? 'font-semibold' : ''
+					}"
 				>
 					About Us
 				</a>
 				<a
 					href="/contact"
-					class="px-3 py-2 text-sm font-medium text-gray-700 transition-colors duration-200 hover:text-black {$page
-						.url.pathname === '/contact'
-						? 'font-semibold'
-						: ''}"
+					class="px-3 py-2 text-sm font-medium text-gray-700 transition-colors duration-200 hover:text-black {
+						$page.url.pathname === '/contact' ? 'font-semibold' : ''
+					}"
 				>
 					Contact
 				</a>
@@ -85,7 +82,11 @@
 
 			<!-- Mobile menu button -->
 			<div class="flex items-center md:hidden">
-				<button type="button" class="p-2 text-gray-700 hover:text-black">
+				<button
+					type="button"
+					class="p-2 text-gray-700 hover:text-black"
+					on:click={() => (isMobileMenuOpen = !isMobileMenuOpen)}
+				>
 					<span class="sr-only">Open main menu</span>
 					<svg
 						class="h-6 w-6"
@@ -107,29 +108,31 @@
 	</div>
 
 	<!-- Mobile menu -->
-	<div class="hidden md:hidden">
-		<div class="space-y-1 px-2 pb-3 pt-2">
-			<a href="/" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-black">
-				Home
-			</a>
-			<a href="/shop" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-black">
-				Shop
-			</a>
-			<a
-				href="/about-us"
-				class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-black"
-			>
-				About Us
-			</a>
-			<a
-				href="/contact"
-				class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-black"
-			>
-				Contact
-			</a>
-			<a href="/login" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-black">
-				Login / Register
-			</a>
+	{#if isMobileMenuOpen}
+		<div class="md:hidden">
+			<div class="space-y-1 px-2 pb-3 pt-2">
+				<a href="/" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-black">
+					Home
+				</a>
+				<a href="/shop" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-black">
+					Shop
+				</a>
+				<a
+					href="/about-us"
+					class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-black"
+				>
+					About Us
+				</a>
+				<a
+					href="/contact"
+					class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-black"
+				>
+					Contact
+				</a>
+				<a href="/login" class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-black">
+					Login / Register
+				</a>
+			</div>
 		</div>
-	</div>
+	{/if}
 </nav>
