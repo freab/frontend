@@ -1,4 +1,4 @@
-<div class="relative overflow-hidden w-full h-full bg-white">
+<div class="relative overflow-hidden w-full h-full bg-gray-50">
     <div class="absolute inset-0 bg-gray-50/50"></div>
     <div class="container relative w-full h-full mx-auto">
         <div class="grid items-center gap-16 md:grid-cols-2 w-full h-full">
