@@ -7,7 +7,7 @@
 	];
 </script>
 
-<div class="bg-white py-12 text-black">
+<div class="bg-gray-50/50 py-12 text-black">
 	<div
 		class="relative bg-cover bg-center py-20 text-center after:absolute after:inset-0"
 		style="background-image: url('/src/lib/assets/1.jpg');"

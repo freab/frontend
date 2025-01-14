@@ -11,7 +11,7 @@
 	/>
 </svelte:head>
 
-<nav class="sticky top-0 z-50 w-full overflow-hidden bg-white font-[Poppins]">
+<nav class="sticky top-0 z-50 w-full overflow-hidden bg-gray-50 font-[Poppins]">
 	<div class="px-6">
 		<div class="flex h-14 justify-between items-center">
 			<!-- Logo -->
