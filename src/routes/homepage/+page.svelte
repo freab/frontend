@@ -5,12 +5,14 @@
 	import Nav from '../../components/Nav.svelte';
 	import Featured from '../../components/Featured.svelte';
 	import Footer from '../../components/Footer.svelte';
+	import Stickers from '../../components/Stickers.svelte';
 </script>
 
 <Nav />
 <CTA />
-<Experience />
+<!-- <Experience /> -->
 <Featured />
+<Stickers/>
 
 <!-- <div class="flex h-full w-full flex-col items-center justify-center">
 	<span class="pb-4">THIS IS HOMEPAGE</span>

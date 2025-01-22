@@ -1,3 +1,8 @@
+<script>
+	import bigshirt from '$lib/assets/2.jpg'
+	
+</script>
+
 <div class="relative overflow-hidden w-full h-full bg-gray-50">
     <div class="absolute inset-0 bg-gray-50/50"></div>
     <div class="container relative w-full h-full mx-auto">
@@ -12,7 +17,7 @@
 	  
 				  <h2 class="font-satoshi text-5xl font-black md:text-7xl leading-tight">
 					<span class="block">Shop or Browse</span>
-					<span class="block bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-blue-600">
+					<span class=" top-1 block bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-blue-600">
 					  Authentic Merch
 					</span>
 				  </h2>
@@ -31,7 +36,7 @@
                 </div>
             </div>
             <div class="relative aspect-[5/5] overflow-hidden rounded-3xl bg-white shadow-2xl w-full h-full">
-                <img src="/src/lib/assets/2.jpg" alt="Merchandise Display" class="h-full w-full object-cover transition-transform duration-700 hover:scale-105"/>
+                <img src={bigshirt} alt="Merchandise Display" class="h-full w-full object-cover transition-transform duration-700 hover:scale-105"/>
             </div>
         </div>
     </div>

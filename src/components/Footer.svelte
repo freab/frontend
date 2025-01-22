@@ -1,4 +1,6 @@
 <script>
+	import  logo from '$lib/assets/logo-[2]-C.png';
+    import noise from '$lib/assets/noise.png'
     import { base } from '$app/paths';
 </script>
 
@@ -9,13 +11,16 @@
     />
 </svelte:head>
 
-<footer class="font-poppins py-16 bg-gray-50">
-    <div class="container mx-auto px-4">
-        <div class="flex flex-col items-start justify-between space-y-12 md:flex-row md:space-y-0 md:space-x-12">
+<footer class="font-poppins py-16 bg-gray-50 relative overflow-hidden">
+    <!-- Noise Texture Background -->
+    <div class="absolute inset-0 bg-[url({noise})] opacity-10 pointer-events-none"></div>
+
+    <div class="container mx-auto px-4 relative z-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
             <!-- Logo & Description -->
-            <div class="max-w-xs space-y-6">
+            <div class="space-y-6">
                 <img
-                    src="{base}/src/lib/assets/logo-[2]-C.png"
+                    src="{logo}"
                     alt="Ruthful Hearts Logo"
                     class="h-24 transition-all duration-300 hover:opacity-90"
                 />
@@ -25,8 +30,8 @@
             </div>
 
             <!-- Navigation Links - First Column -->
-            <div class="group">
-                <h3 class="font-poppins mb-5 text-sm font-bold uppercase tracking-wider text-gray-500">
+            <div>
+                <h3 class="mb-5 text-sm font-bold uppercase tracking-wider text-gray-500">
                     Explore
                 </h3>
                 <nav class="flex flex-col space-y-3">
@@ -54,8 +59,8 @@
             </div>
 
             <!-- Navigation Links - Second Column -->
-            <div class="group">
-                <h3 class="font-poppins mb-5 text-sm font-bold uppercase tracking-wider text-gray-500">
+            <div>
+                <h3 class="mb-5 text-sm font-bold uppercase tracking-wider text-gray-500">
                     Connect
                 </h3>
                 <nav class="flex flex-col space-y-3">
@@ -122,17 +127,17 @@
                             fill="currentColor"
                             viewBox="0 0 24 24"
                         >
-						<path
-						d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
-					/>					
+                            <path
+                                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+                            />
                         </svg>
                     </a>
                 </div>
                 <div class="space-y-4">
-                    <h3 class="font-poppins text-sm font-bold uppercase tracking-wider text-gray-500">
+                    <h3 class="text-sm font-bold uppercase tracking-wider text-gray-500">
                         Stay Updated
                     </h3>
-                    <div class="flex max-w-md gap-2">
+                    <div class="flex flex-col md:flex-row gap-2">
                         <input
                             type="email"
                             placeholder="Enter your email"
