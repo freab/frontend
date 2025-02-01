@@ -2,28 +2,40 @@
   import { onMount } from 'svelte';
   import Nav from '../../../components/Nav.svelte';
   import Footer from '../../../components/Footer.svelte';
+  import Breadcrumb from '../../../components/Breadcrumb.svelte';
   import img1 from '$lib/assets/1.jpg';
   import img2 from '$lib/assets/2.jpg';
   import img3 from '$lib/assets/3.jpg';
   import img4 from '$lib/assets/4.jpg';
+  import { page } from '$app/stores';
 
   export let data;
 
-  let selectedSize = 'M';
-  let selectedColor = 'White';
-  let currentTab = 'Description';
-  let mainImage = img1;
-
-  $: product = {
+  let product = {
     name: 'Rose store',
     category: 'women’s white t-shirt',
     price: 500,
     description: 'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley..',
     colors: ['White', 'Gray', 'Black'],
     sizes: ['XS', 'S', 'M', 'L'],
+    images: [img1, img2, img3, img4],
   };
 
+  let selectedSize = 'M';
+  let selectedColor = 'White';
+  let currentTab = 'Description';
+  let mainImage = product.images[0];
+
+  let relatedProducts = [
+    { name: 'Casual Shirt', price: 400, image: img2 },
+    { name: 'Summer Dress', price: 600, image: img3 },
+    { name: 'Elegant Blouse', price: 550, image: img4 },
+    { name: 'Casual Shirt', price: 400, image: img2 },
+  ];
+
   let quantity = 1;
+
+  let path = `/shop/${$page.params.slug}`;
 
   function incrementQuantity() {
     quantity = Math.min(quantity + 1, 10); // Limit to 10 items
@@ -42,6 +54,7 @@
 
 <div class="min-h-screen bg-white">
   <Nav />
+  <Breadcrumb path={path} />
   
   <div class="container mx-auto px-4 py-6 grid grid-cols-1 md:grid-cols-2 gap-16">
     <!-- Left - Product Image -->
@@ -134,30 +147,64 @@
   </div>
   <!-- Other Images-->
    <div class="container mx-auto flex gap-3 px-4 py-4">
-    <img src={img2} alt="" class="bg-gray-600 rounded-lg shadow-xl  h-32 w-32" />
-    <img src={img3} alt="" class="bg-gray-600 rounded-lg shadow-xl  h-32 w-32" />
-    <img src={img4} alt="" class="bg-gray-600 rounded-lg shadow-xl  h-32 w-32" />
-   </div>
+   {#each product.images as image}
+   <button 
+   on:click={() => mainImage = image}
+   on:keydown={(e) => {
+     if (e.key === 'Enter' || e.key === ' ') {
+       mainImage = image;
+     }
+   }}
+   tabindex="0"
+   class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 rounded-lg"
+   aria-label="View alternative product image 1"
+ >
+   <img src={image} alt="" class="bg-gray-600 rounded-lg shadow-xl h-32 w-32 object-cover" />
+ </button>
+   {/each}
 
-  <div class="container mx-auto px-4 py-16">
-    <h2 class="text-xl font-semibold text-gray-900 mb-4">Related Products</h2>
-   
-  
-    <div class="mt-8 border-b border-gray-200">
+   </div>
+   <div class="container mx-auto px-4 py-4">
+    <div class="border-b border-gray-200">
       <div class="flex space-x-4">
-        <button 
-          class="text-lg font-semibold text-black border-b-2 border-black px-2 py-1">
+        <button class="text-lg font-semibold px-2 py-1"
+                class:text-black={currentTab === 'Description'}
+                class:text-gray-500={currentTab !== 'Description'}
+                class:border-b-2={currentTab === 'Description'}
+                class:border-black={currentTab === 'Description'}
+                on:click={() => currentTab = 'Description'}>
           Description
         </button>
-        <button class="text-lg font-semibold text-gray-500 px-2 py-1">
+        <button class="text-lg font-semibold px-2 py-1"
+                class:text-black={currentTab === 'Additional Information'}
+                class:text-gray-500={currentTab !== 'Additional Information'}
+                class:border-b-2={currentTab === 'Additional Information'}
+                class:border-black={currentTab === 'Additional Information'}
+                on:click={() => currentTab = 'Additional Information'}>
           Additional Information
         </button>
       </div>
     </div>
-  
-    <p class="text-gray-700 mt-4">
-      Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley...
-    </p>
+    
+    {#if currentTab === 'Description'}
+      <p class="text-gray-700 mt-4">{product.description}</p>
+    {:else}
+      <p class="text-gray-700 mt-4">No additional information available.</p>
+    {/if}
+  </div>
+
+  <div class="container mx-auto px-4 py-4">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">Related Products</h2>
+    <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+      {#each relatedProducts as product}
+        <button class="p-2 border rounded-lg shadow-md hover:shadow-lg transition"
+                on:click={() => console.log(`Navigating to ${product.name}`)}>
+          <img src={product.image} alt={product.name} class="bg-gray-600 rounded-lg shadow-xl h-32 w-full object-cover" />
+          <p class="text-sm font-semibold text-gray-900 mt-2">{product.name}</p>
+          <p class="text-gray-700 text-sm">ETB {product.price}</p>
+        </button>
+      {/each}
+    </div>
   </div>
   
 
